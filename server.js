@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/messages/searchID", (req, res) => {
+  res.json(messages.find((message) => message.id == req.query.id));
+});
+
 app.post("/messages", (req, res) => {
   const validated = req.body.from != "" && req.body.text != "";
   if (validated) {
